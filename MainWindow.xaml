@@ -1,0 +1,35 @@
+﻿<Window x:Class="CommaInjector.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommaInjector"
+        Title="Comma Injector Tool" Height="450" Width="525" WindowStartupLocation="CenterOwner">
+    <FrameworkElement.Resources>
+        <RoutedUICommand x:Key="BreakCmd" Text="Break"/>
+        <RoutedUICommand x:Key="SwitchCmd" Text="Switch"/>
+    </FrameworkElement.Resources>
+    <UIElement.CommandBindings>
+        <CommandBinding Executed="btnBreak_Click" Command="{StaticResource BreakCmd}"/>
+        <CommandBinding Executed="SwitchMode" Command="{StaticResource SwitchCmd}"/>
+    </UIElement.CommandBindings>
+    <UIElement.InputBindings>
+        <KeyBinding Key="B" Modifiers="Ctrl" Command="{StaticResource BreakCmd}"/>
+        <KeyBinding Key="Space" Modifiers="Ctrl" Command="{StaticResource SwitchCmd}"/>
+    </UIElement.InputBindings>
+    <Grid Row="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ComboBox Name="pkInOrInsert" Grid.Row="0" Width="60" Height="20" Margin="-80,0,0,0"
+              HorizontalAlignment="Center" ToolTip="Ctrl+Space">
+            <ComboBoxItem IsSelected="true">In</ComboBoxItem>
+            <ComboBoxItem>Insert</ComboBoxItem>
+        </ComboBox>
+        <Button Name="btnBreak" Grid.Row="0" Width="60" Height="20" Margin="80,0,00,0" HorizontalAlignment="Center"
+            ToolTip="Ctrl+B" Command="{StaticResource BreakCmd}">Break</Button>
+        <TextBox Name="txtBroken" Grid.Row="1" AcceptsReturn="true" TextWrapping="WrapWithOverflow"
+             ToolTip="Paste list here" AcceptsTab="true" VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>
